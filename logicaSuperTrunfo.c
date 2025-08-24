@@ -4,36 +4,32 @@ int main() {
     
     // Declaração de variáveis da Carta 
     
-    unsigned long int populacao;
-    unsigned long int populacao2;
-    int opcao;
-    int turismo;
-    int turismo2;
-    char codigo[3];
-    char codigo2[3];
-    float area;
-    float area2;
-    float PIBCapita;
-    float PIBCapita2;
-    float densidade;
-    float densidade2;
-    float densidadeinver;
-    float densidadeinver2;
-    float PIB;
-    float PIB2;
-    float SuperPoder;
-    float SuperPoder2;
-    char cidade[40];
-    char cidade2[40];
-    char estado[40];
-    char estado2[40];
+    unsigned long int populacao, populacao2;
+    int total_carta1, total_carta2;
+    int opcaoUsada[6] = {0, 0, 0, 0 , 0, 0}; // array de flags
+    int opcao, opcao2;
+    int turismo, turismo2;
+    char codigo[3], codigo2[3];
+    float area, area2;
+    float PIBCapita, PIBCapita2;
+    float densidade, densidade2;
+    float densidadeinver, densidadeinver2;
+    float PIB, PIB2;
+    float SuperPoder, SuperPoder2;
+    float soma_carta1, soma_carta2;
+    float Carta1, Carta2;
+    char Carta_1, Carta_2;
+    char cidade[40], cidade2[40];
+    char estado[40], estado2[40];
     
     // Bloco referente a entrada de dados
 
     printf("Digite o nome de um estado de A a H: "); 
     scanf("%s", estado); // Linha referente a variável estado
      if (estado[0] != 'A' && estado[0] != 'B' && estado[0] != 'C' && estado[0] != 'D' &&
-        estado[0] != 'E' && estado[0] != 'F' && estado[0] != 'G' && estado[0] != 'H') {
+         estado[0] != 'E' && estado[0] != 'F' && estado[0] != 'G' && estado[0] != 'H' &&
+         estado[0] != 'a' && estado[0] != 'b' && estado[0] != 'c' && estado[0] != 'd' &&
+         estado[0] != 'e' && estado[0] != 'f' && estado[0] != 'g' && estado[0] != 'h') {
             printf("Opção invalida\n");
             return 1; // Encerra o programa caso a entrada não for adequada
         }
@@ -114,7 +110,9 @@ int main() {
     printf("Digite o nome de um estado de A a H: "); 
     scanf("%s", estado2); // Linha referente a variável estado
     if (estado2[0] != 'A' && estado2[0] != 'B' && estado2[0] != 'C' && estado2[0] != 'D' &&
-        estado2[0] != 'E' && estado2[0] != 'F' && estado2[0] != 'G' && estado2[0] != 'H') {
+        estado2[0] != 'E' && estado2[0] != 'F' && estado2[0] != 'G' && estado2[0] != 'H' &&
+        estado2[0] != 'a' && estado2[0] != 'b' && estado2[0] != 'c' && estado2[0] != 'd' &&
+        estado2[0] != 'e' && estado2[0] != 'f' && estado2[0] != 'g' && estado2[0] != 'h') {
             printf("Opção invalida\n");
             return 1; // Encerra o programa caso a entrada não for adequada
         }
@@ -195,14 +193,31 @@ int main() {
  
     printf("** Comparação das Cartas: **\n");
     printf("Por favor, selecione um atributo a ser comparado:\n");
+    if (opcaoUsada[0] == 0){
     printf("1. Estado\n");
+    }
+    if (opcaoUsada[1] == 0) {
     printf("2. População\n");
+    }
+    if (opcaoUsada[2] == 0) {
     printf("3. Área\n");
+    }
+    if (opcaoUsada[3] == 0) {
     printf("4. PIB\n");
+    }
+    if (opcaoUsada[4] == 0) {
     printf("5. Pontos Turísticos\n");
+    }
+    if (opcaoUsada[5] == 0) {
     printf("6. Densidade Demográfica\n");
+    }
     printf("Digite sua opção: ");
     scanf("%d", &opcao);
+
+    // Marcação da primeira opção escolhida como usada
+    if (opcao >= 1 && opcao <= 6) {
+        opcaoUsada[opcao - 1] = 1;
+    }
     
     switch (opcao) {
         case 1:
@@ -215,8 +230,10 @@ int main() {
            printf("População Carta 2: %lu\n", populacao2);
            if (populacao > populacao2) {
             printf("Carta 1 venceu!\n");
+           } else if (populacao == populacao2) {
+            printf("Empate!\n");
            } else {
-            printf("Carta 2 venceu!\n");
+            printf("Carta 2 venceu!");
            }
         break;
 
@@ -225,6 +242,8 @@ int main() {
            printf("Área da Carta 2: %.2f\n", area2);
            if (area > area2) {
             printf("Carta 1 venceu!\n");
+           } else if (area == area2) {
+            printf("Empate!\n");
            } else {
             printf("Carta 2 venceu\n");
            }
@@ -235,6 +254,8 @@ int main() {
            printf("O PIB da Carta 2 é: %.2f\n", PIB2);
            if (PIB > PIB2) {
             printf("Carta 1 venceu!\n");
+           } else if (PIB == PIB2) {
+            printf("Empate!\n");
            } else {
             printf("Carta 2 venceu!\n");
            }
@@ -245,6 +266,8 @@ int main() {
            printf("Pontos turísticos da Carta 2: %d\n", turismo2);
            if (turismo > turismo2) {
             printf("Carta 1 venceu!\n");
+           } else if (turismo == turismo2) {
+            printf("Empate!\n");
            } else {
             printf("Carta 2 venceu!\n");
            }
@@ -255,6 +278,8 @@ int main() {
            printf("Densidade demográfica da Carta 2: %.2f\n", densidade2);
            if (densidade < densidade2) {
             printf("Carta 1 venceu!\n");
+           } else if (densidade == densidade2) {
+            printf("Empate!\n");
            } else {
             printf("Carta 2 venceu!\n");
            }
@@ -262,6 +287,205 @@ int main() {
 
         default:
            printf("Selecione uma opção válida!\n");
+    }
+
+    printf("Por favor, selecione um atributo a ser comparado:\n");
+    if (opcaoUsada[0] == 0){
+    printf("1. Estado\n");
+    }
+    if (opcaoUsada[1] == 0) {
+    printf("2. População\n");
+    }
+    if (opcaoUsada[2] == 0) {
+    printf("3. Área\n");
+    }
+    if (opcaoUsada[3] == 0) {
+    printf("4. PIB\n");
+    }
+    if (opcaoUsada[4] == 0) {
+    printf("5. Pontos Turísticos\n");
+    }
+    if (opcaoUsada[5] == 0) {
+    printf("6. Densidade Demográfica\n");
+    }
+    printf("Digite sua opção: ");
+    scanf("%d", &opcao2);
+
+    // Marcação da primeira opção escolhida como usada
+    if (opcao2 >= 1 && opcao2 <= 6) {
+        opcaoUsada[opcao2 - 1] = 1;
+    }
+
+
+    switch (opcao2) {
+        case 1:
+           printf("O Estado da Carta 1 é: %s\n", estado);
+           printf("O Estado da Carta 2 é: %s\n", estado2);
+        break;
+
+        case 2:
+           printf("População Carta 1: %lu\n", populacao);
+           printf("População Carta 2: %lu\n", populacao2);
+           if (populacao > populacao2) {
+            printf("Carta 1 venceu!\n");
+           } else if (populacao == populacao2) {
+            printf("Empate!\n");
+           } else {
+            printf("Carta 2 venceu!");
+           }
+        break;
+
+        case 3:
+           printf("Área da Carta 1: %.2f\n", area);
+           printf("Área da Carta 2: %.2f\n", area2);
+           if (area > area2) {
+            printf("Carta 1 venceu!\n");
+           } else if (area == area2) {
+            printf("Empate!\n");
+           } else {
+            printf("Carta 2 venceu\n");
+           }
+        break;
+
+        case 4:
+           printf("O PIB da Carta 1 é: %.2f\n", PIB);
+           printf("O PIB da Carta 2 é: %.2f\n", PIB2);
+           if (PIB > PIB2) {
+            printf("Carta 1 venceu!\n");
+           } else if (PIB == PIB2) {
+            printf("Empate!\n");
+           } else {
+            printf("Carta 2 venceu!\n");
+           }
+        break;
+
+        case 5:
+           printf("Pontos turísticos da Carta 1: %d\n", turismo);
+           printf("Pontos turísticos da Carta 2: %d\n", turismo2);
+           if (turismo > turismo2) {
+            printf("Carta 1 venceu!\n");
+           } else if (turismo == turismo2) {
+            printf("Empate!\n");
+           } else {
+            printf("Carta 2 venceu!\n");
+           }
+        break;
+
+        case 6:
+           printf("Densidade demográfica da Carta 1: %.2f\n", densidade);
+           printf("Densidade demográfica da Carta 2: %.2f\n", densidade2);
+           if (densidade < densidade2) {
+            printf("Carta 1 venceu!\n");
+           } else if (densidade == densidade2) {
+            printf("Empate!\n");
+           } else {
+            printf("Carta 2 venceu!\n");
+           }
+        break;
+
+        default:
+           printf("Selecione uma opção válida!\n");
+    }
+
+    // Tabela de variáveis 
+    int valor_escolha1, valor_escolha2; 
+    if (opcao == 2) {
+        valor_escolha1 = populacao;
+    } else if (opcao == 3) {
+        valor_escolha1 = area;
+    } else if (opcao == 4) {
+        valor_escolha1 = PIB; 
+    } else if (opcao == 5) {
+        valor_escolha1 = turismo;
+    } else {
+        valor_escolha1 = densidade;
+    }
+    
+    if (opcao2 == 2) {
+        valor_escolha2 = populacao;
+    } else if (opcao2 == 3) {
+        valor_escolha2 = area;
+    } else if (opcao2 == 4) {
+        valor_escolha2 = PIB;
+    } else if (opcao2 == 5) {
+        valor_escolha2 = turismo;
+    } else {
+        valor_escolha2 = densidade;
+    }
+    
+    int escolha1, escolha2;
+    if (opcao == 2) {
+        escolha1 = populacao2;
+    } else if (opcao == 3) {
+        escolha1 = area2;
+    } else if (opcao == 4) {
+        escolha1 = PIB2; 
+    } else if (opcao == 5) {
+        escolha1 = turismo2;
+    } else {
+        escolha1 = densidade2;
+    }
+
+    if (opcao2 == 2) {
+        escolha2 = populacao2;
+    } else if (opcao2 == 3) {
+        escolha2 = area2;
+    } else if (opcao2 == 4) {
+        escolha2 = PIB2; 
+    } else if (opcao2 == 5) {
+        escolha2 = turismo2;
+    } else {
+        escolha2 = densidade2;
+    }
+
+    printf("Soma dos atributos:\n");
+    printf("O Estado da Carta 1 é: %s\n", estado);
+    printf("O Estado da Carta 2 é: %s\n", estado2 );
+
+    if (opcao == 1) {
+        printf("Atributo escolhido da Carta 1 é Estado: %s\n", estado);
+    } else if (opcao == 2) {
+        printf("Atributo escolhido da Carta 1 é População: %lu\n", populacao);
+    } else if (opcao == 3) {
+        printf("Atributo escolhido da Carta 1 é Área: %.2f\n", area);
+    } else if (opcao == 4) {
+        printf("Atributo escolhido da Carta 1 é PIB: %.2f\n", PIB);
+    } else if (opcao == 5) {
+        printf("Atributo escolhido da Carta 1 é Turismo: %d\n", turismo);
+    } else {
+        printf("Atributo escolhido da Carta 1 é Densidade: %.2f\n", densidade);
+    }
+
+    if (opcao2 == 1) {
+        printf("Atributo escolhido da Carta 2 é Estado: %s\n", estado2);
+    } else if (opcao2 == 2) {
+        printf("Atributo escolhido da Carta 2 é População: %lu\n", populacao2);
+    } else if (opcao2 == 3) {
+        printf("Atributo escolhido da Carta 2 é Área: %.2f\n", area2);
+    } else if (opcao2 == 4) {
+        printf("Atributo escolhido da Carta 2 é PIB: %.2f\n", PIB2);
+    } else if (opcao2 == 5) {
+        printf("Atributo escolhido da Carta 2 é Turismo: %d\n", turismo2);
+    } else {
+        printf("Atributo escolhido da Carta 2 é Densidade: %.2f\n", densidade2);
+    }
+
+    if (opcao == 1 || opcao2 == 1) {
+        printf("Um dos atributos não podem ser somados\n");
+    } else {
+        soma_carta1 = valor_escolha1 + valor_escolha2;
+        soma_carta2 = escolha1 + escolha2; 
+        printf("Soma da Carta 1: %.2f\n", soma_carta1);
+        printf("Soma da Carta 2: %.2f\n", soma_carta2);
+
+        if (soma_carta1 == soma_carta2) {
+            printf("Empate!\n");
+        } else if (soma_carta1 > soma_carta2)  {
+            printf("Carta 1 venceu!\n");
+        } else {
+            printf("Carta 2 venceu!\n");
+        }
+        
     }
     
 return 0;
